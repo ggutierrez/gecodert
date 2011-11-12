@@ -44,3 +44,18 @@ include_directories(GECODE_INCLUDE_DIR)
 ##########################################################################
 include_directories(${CMAKE_SOURCE_DIR})
 
+set(SOURCES
+  gecodert/gecodert.cpp
+)
+
+add_library(gecodert ${SOURCES})
+target_link_libraries(gecodert ${GECODE_LIBRARIES})
+
+##########################################################################
+# Examples
+##########################################################################
+set(EXAMPLES money)
+foreach(example ${EXAMPLES})
+  add_executable(${example} examples/${example}.cpp)
+  target_link_libraries(${example} gecodert)
+endforeach()
