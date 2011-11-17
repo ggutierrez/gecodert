@@ -11,7 +11,7 @@
  * The GecodeRT namespace contains all the functionality required to
  * make gecode available as an interface for other languages.
  */
-namespace  GecodeRT {
+namespace GecodeRT {
   
   /**
    * \brief Class that abstracts copy and clonning from users
@@ -27,7 +27,6 @@ namespace  GecodeRT {
   private:
     typedef std::vector<Gecode::IntVar> IvContainer;
     typedef IvContainer::iterator IvContainerIT;
-  private:
     /// Storage for the int variables
     IvContainer iv;
     /// Copy constructor
