@@ -1,9 +1,16 @@
 #ifndef __GECODERT_GECODERT_HH__
 #define __GECODERT_GECODERT_HH__
 
+#include <iostream>
+#include <tuple>
 #include <gecode/kernel.hh>
 #include <gecode/int.hh>
 #include <vector>
+
+using namespace std;
+
+typedef tuple <unsigned char, unsigned int> tupla;
+
 /**
  * \namespace GecodeRT \brief Abstraction to provide a Gecode
  * interface that is friendly for interpreted languages.
@@ -37,7 +44,7 @@ namespace GecodeRT {
     /// Destructor
     virtual ~GecodeSpace(void);
     /// Create a new integer variable
-    void newIntVar(int min, int max);
+    tupla newIntVar(int min, int max);
     /// Copy function
     virtual Gecode::Space* copy(bool share);
   };

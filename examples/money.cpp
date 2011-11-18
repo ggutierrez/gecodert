@@ -12,6 +12,10 @@ public:
 
 Money::Money(void) {
   newIntVar(0,10);
+  newIntVar(-142424,10);
+  newIntVar(0,10);
+  newIntVar(0,10);
+  newIntVar(0,10);
   cout << "In Money constructor" << endl;
 }
 
