@@ -3,20 +3,20 @@
 
 #include <iostream>
 #include <tuple>
+#include <vector>
 #include <gecode/kernel.hh>
 #include <gecode/int.hh>
-#include <vector>
 
 using namespace std;
 
-typedef tuple <unsigned char, unsigned int> tupla;
+typedef tuple <unsigned char, unsigned int> _tuple;
 
 /**
  * \namespace GecodeRT \brief Abstraction to provide a Gecode
  * interface that is friendly for interpreted languages.
  *
  * The GecodeRT namespace contains all the functionality required to
- * make gecode available as an interface for other languages.
+ * make Gecode available as an interface for other languages.
  */
 namespace GecodeRT {
   
@@ -44,7 +44,7 @@ namespace GecodeRT {
     /// Destructor
     virtual ~GecodeSpace(void);
     /// Create a new integer variable
-    tupla newIntVar(int min, int max);
+    _tuple newIntVar(int min, int max);
     /// Copy function
     virtual Gecode::Space* copy(bool share);
   };

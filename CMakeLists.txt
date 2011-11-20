@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH}
   "${CMAKE_CURRENT_SOURCE_DIR}/cmake-support"
-)
+  )
 
 set(PACKAGE_VERSION "0.1")
 
@@ -21,7 +21,7 @@ endif()
 if(CMAKE_COMPILER_IS_GNUCC)
   execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpversion
     OUTPUT_VARIABLE GCC_VERSION)
-    message(STATUS "GCC version ${GCC_VERSION}")
+  message(STATUS "GCC version ${GCC_VERSION}")
 else()
   message(WARNING "Compiler: ${CMAKE_CXX_COMPILER_ID} is unsupported")
 endif()
@@ -46,7 +46,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 set(SOURCES
   gecodert/gecodert.cpp
-)
+  )
 
 add_library(gecodert ${SOURCES})
 target_link_libraries(gecodert ${GECODE_LIBRARIES})
