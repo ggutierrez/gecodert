@@ -6,6 +6,7 @@
 #include <vector>
 #include <gecode/kernel.hh>
 #include <gecode/int.hh>
+#include <gecode/set.hh>
 
 using namespace std;
 
@@ -99,7 +100,8 @@ namespace GecodeRT {
     /// Create a new integer variable
     CtVar newIntVar(int min, int max);
     /// Returns the constraint variable represented by \a var
-    const Gecode::IntVar& var(const CtVar& var) const;
+    const Gecode::IntVar& intVar(const CtVar& var) const;
+    const Gecode::SetVar& setVar(const CtVar& var) const;
     /// Copy function
     virtual Gecode::Space* copy(bool share);
     /// Dump space variables to \a os

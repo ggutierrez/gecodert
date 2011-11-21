@@ -19,7 +19,7 @@ namespace GecodeRT {
     return new GecodeSpace(share, *this);
   }
   
-  const IntVar& GecodeSpace::var(const CtVar& v) const {
+  const IntVar& GecodeSpace::intVar(const CtVar& v) const {
     return iv.at(v.index_);
   }
   
@@ -46,7 +46,8 @@ namespace GecodeRT {
     std::cout << "Should post a brancher" << std::endl;
     IntVarArgs x;
     for (const CtVar& v : vars) {
-      x << home.var(v);
+      // add type detection
+      x << home.intVar(v);
     }
     Gecode::branch(home,x,Gecode::INT_VAR_SIZE_MIN,Gecode::INT_VAL_MIN);;
   }
