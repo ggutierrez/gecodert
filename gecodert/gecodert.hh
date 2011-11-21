@@ -98,9 +98,26 @@ namespace GecodeRT {
     virtual ~GecodeSpace(void);
     /// Create a new integer variable
     CtVar newIntVar(int min, int max);
+    /// Returns the constraint variable represented by \a var
+    const Gecode::IntVar& var(const CtVar& var) const;
     /// Copy function
     virtual Gecode::Space* copy(bool share);
+    /// Dump space variables to \a os
+    std::ostream& dump(std::ostream& os) const;
   };
+
+  /**
+   * \brief Branch on the variables in \a vars
+   *
+   */
+  void branch(GecodeSpace& home, const std::vector<CtVar>& vars);  
+  /**
+   * \brief Search
+   *
+   */
+  void search(GecodeSpace& root);
+  
+  
 }
 
 #endif

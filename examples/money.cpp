@@ -11,16 +11,13 @@ public:
 };
 
 Money::Money(void) {
-  newIntVar(0,10);
-  newIntVar(-142424,10);
-  newIntVar(0,10);
-  newIntVar(0,10);
-  newIntVar(0,10);
+  CtVar x = newIntVar(0,10);
+  branch(*this,{x});
   cout << "In Money constructor" << endl;
 }
 
 int main(void) {
   Money m;
-  cout << "Running" << endl;
+  search(m);
   return 0;
 }
