@@ -9,14 +9,12 @@ namespace GecodeRT {
   
   GecodeSpace::~GecodeSpace(void) {}
   
-  // GecodeSpace::GecodeSpace(bool share, GecodeSpace& sp)
-  //   : Gecode::Space(share,sp), iv(sp.iv)  {
-  //   for(unsigned int i = 0; i < iv.size(); i++)
-  //     iv[i].update(*this, share, sp.iv[i]);
-  // }
-
   GecodeSpace::GecodeSpace(bool share, GecodeSpace& sp)
-    : Gecode::Space(share,sp), sv(sp.sv)  {
+    : Gecode::Space(share,sp), iv(sp.iv), bv(sp.bv), sv(sp.sv){
+    for(unsigned int i = 0; i < iv.size(); i++)
+      iv[i].update(*this, share, sp.iv[i]);
+    for(unsigned int i = 0; i < bv.size(); i++)
+      bv[i].update(*this, share, sp.bv[i]);
     for(unsigned int i = 0; i < sv.size(); i++)
       sv[i].update(*this, share, sp.sv[i]);
   }
@@ -42,18 +40,18 @@ namespace GecodeRT {
     IntVar v(*this, IntSet(min, max));
     unsigned int index = iv.size();
     iv.push_back(v);
-    return CtVar('b', index);
+    return CtVar('i', index);
   }
 
-  CtVar GecodeSpace::newBoolVar(int min, int max) {
-    BoolVar v(*this, min, max);
+  CtVar GecodeSpace::newBoolVar() {
+    BoolVar v(*this,0,1);
     unsigned int index = bv.size();
     bv.push_back(v);
     return CtVar('b', index);
   }
 
-  CtVar GecodeSpace::newSetVar(int glbMin, int glbMax, int lubMin, int lubMax) {
-    SetVar v(*this, IntSet(glbMin, glbMax), IntSet(lubMin, lubMax));
+  CtVar GecodeSpace::newSetVar(IntSet glb, IntSet lub) {
+    SetVar v(*this, glb, lub);
     unsigned int index = sv.size();
     sv.push_back(v);
     return CtVar('s', index);
@@ -66,43 +64,46 @@ namespace GecodeRT {
       os << "\t" << i << ": " << v << std::endl;
       i++;
     }
-    return os;
-  }
-
-  std::ostream& GecodeSpace::dump2(std::ostream& os) const {
-    os << "Variables: " << std::endl;
-    int i = 0;
+    int j = 0;
+    for (const BoolVar& v : bv) {
+      os << "\t" << j << ": " << v << std::endl;
+      j++;
+    }
+    int k = 0;
     for (const SetVar& v : sv) {
-      os << "\t" << i << ": " << v << std::endl;
-      i++;
+      os << "\t" << k << ": " << v << std::endl;
+      k++;
     }
     return os;
   }
+
   /*
    * Branching on a space
    */
-  void branch(GecodeSpace& home, const std::vector<CtVar>& iv) {
+  void branch(GecodeSpace& home, const std::vector<CtVar>& v) {
     std::cout << "Should post a brancher" << std::endl;
-    IntVarArgs x;
-    for (const CtVar& v : iv) {
-      // add type detection
-      x << home.intVar(v);
-    }
-    Gecode::branch(home,x,Gecode::INT_VAR_SIZE_MIN,Gecode::INT_VAL_MIN);;
+    
+    if(v[0].isIntVar()){
+      IntVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.intVar(cv);
+      }
+      Gecode::branch(home,x,Gecode::INT_VAR_SIZE_MIN,Gecode::INT_VAL_MIN);
+    } else if(v[0].isBoolVar()){
+      BoolVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.boolVar(cv);
+      }
+      Gecode::branch(home,x,Gecode::INT_VAR_SIZE_MIN,Gecode::INT_VAL_MIN);
+    } else if(v[0].isSetVar()){	
+      SetVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.setVar(cv);
+      }
+      Gecode::branch(home,x,Gecode::SET_VAR_SIZE_MIN,Gecode::SET_VAL_MIN_INC);
+    } 
   }
-
-
-    void branch2(GecodeSpace& home, const std::vector<CtVar>& sv) {
-    std::cout << "Should post a brancher" << std::endl;
-    SetVarArgs x;
-    for (const CtVar& v : sv) {
-      // add type detection
-      x << home.setVar(v);
-    }
-    Gecode::branch(home,x,Gecode::SET_VAR_SIZE_MIN,Gecode::SET_VAL_MIN_INC);;
-  }
-
-
+  
   /*
    * Search
    */
@@ -114,14 +115,4 @@ namespace GecodeRT {
       delete s;
     }
   }
-
-  void search2(GecodeSpace& root) {
-    DFS<GecodeSpace> e(&root);
-    while (GecodeSpace *s = e.next()) {
-      std::cout << "Solution found" << std::endl;
-      s->dump2(std::cout);
-      delete s;
-    }
-  }
-
 }

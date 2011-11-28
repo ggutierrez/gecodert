@@ -9,7 +9,6 @@
 #include <gecode/set.hh>
 
 using namespace std;
-
 /**
  * \namespace GecodeRT \brief Abstraction to provide a Gecode
  * interface that is friendly for interpreted languages.
@@ -59,8 +58,16 @@ namespace GecodeRT {
     CtVar(const CtVar& v)
       : type_(v.type_), index_(v.index_) {} 
     /// Tests if the variable is an IntVar
-    bool isIntVar(const CtVar& v) const {
-      return v.type_ == 'i';
+    bool isIntVar() const {
+      return type_ == 'i';
+    }
+    /// Tests if the variable is an BoolVar
+    bool isBoolVar() const {
+      return type_ == 'b';
+    }
+    /// Tests if the variable is an SetVar
+    bool isSetVar() const {
+      return type_ == 's';
     }
     /// Prints the type information to \a os
     void print(std::ostream& os) const {
@@ -111,9 +118,9 @@ namespace GecodeRT {
     /// Create a new integer variable
     CtVar newIntVar(int min, int max);
     /// Create a new bool variable
-    CtVar newBoolVar(int min, int max);
+    CtVar newBoolVar();
     /// Create a new set variable
-    CtVar newSetVar(int glbMin, int glbMax, int lubMin, int lubMax);
+    CtVar newSetVar(Gecode::IntSet glb, Gecode::IntSet lub);
     /// Returns the constraint variable represented by \a var
     const Gecode::IntVar& intVar(const CtVar& var) const;
     /// Returns the constraint variable represented by \a var
@@ -124,23 +131,19 @@ namespace GecodeRT {
     virtual Gecode::Space* copy(bool share);
     /// Dump space variables to \a os
     std::ostream& dump(std::ostream& os) const;
-    
-    std::ostream& dump2(std::ostream& os) const;
   };
 
   /**
    * \brief Branch on the variables in \a vars
    *
    */
-  void branch(GecodeSpace& home, const std::vector<CtVar>& bv);  
-  void branch2(GecodeSpace& home, const std::vector<CtVar>& bv);  
-  /**
+  void branch(GecodeSpace& home, const std::vector<CtVar>& v);  
+ 
+ /**
    * \brief Search
    *
    */
   void search(GecodeSpace& root);
-  void search2(GecodeSpace& root);
-  
   
 }
 
