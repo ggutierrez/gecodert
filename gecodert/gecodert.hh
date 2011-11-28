@@ -57,7 +57,7 @@ namespace GecodeRT {
   public:
     /// Copy constructor
     CtVar(const CtVar& v)
-      : type_(v.type_), index_(v.index_) {}
+      : type_(v.type_), index_(v.index_) {} 
     /// Tests if the variable is an IntVar
     bool isIntVar(const CtVar& v) const {
       return v.type_ == 'i';
@@ -90,6 +90,17 @@ namespace GecodeRT {
     typedef IvContainer::iterator IvContainerIT;
     /// Storage for the int variables
     IvContainer iv;
+    
+    typedef std::vector<Gecode::BoolVar> BvContainer;
+    typedef IvContainer::iterator BvContainerIT;
+    /// Storage for the bool variables
+    BvContainer bv;
+
+    typedef std::vector<Gecode::SetVar> SvContainer;
+    typedef IvContainer::iterator SvContainerIT;
+    /// Storage for the bool variables
+    SvContainer sv;
+    
     /// Copy constructor
     GecodeSpace(bool share, GecodeSpace&);
   public:
@@ -99,25 +110,36 @@ namespace GecodeRT {
     virtual ~GecodeSpace(void);
     /// Create a new integer variable
     CtVar newIntVar(int min, int max);
+    /// Create a new bool variable
+    CtVar newBoolVar(int min, int max);
+    /// Create a new set variable
+    CtVar newSetVar(int glbMin, int glbMax, int lubMin, int lubMax);
     /// Returns the constraint variable represented by \a var
     const Gecode::IntVar& intVar(const CtVar& var) const;
+    /// Returns the constraint variable represented by \a var
+    const Gecode::BoolVar& boolVar(const CtVar& var) const;
+    /// Returns the constraint variable represented by \a var
     const Gecode::SetVar& setVar(const CtVar& var) const;
     /// Copy function
     virtual Gecode::Space* copy(bool share);
     /// Dump space variables to \a os
     std::ostream& dump(std::ostream& os) const;
+    
+    std::ostream& dump2(std::ostream& os) const;
   };
 
   /**
    * \brief Branch on the variables in \a vars
    *
    */
-  void branch(GecodeSpace& home, const std::vector<CtVar>& vars);  
+  void branch(GecodeSpace& home, const std::vector<CtVar>& bv);  
+  void branch2(GecodeSpace& home, const std::vector<CtVar>& bv);  
   /**
    * \brief Search
    *
    */
   void search(GecodeSpace& root);
+  void search2(GecodeSpace& root);
   
   
 }
