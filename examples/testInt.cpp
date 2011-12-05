@@ -17,8 +17,8 @@ Test::Test(void) {
   CtVar x = newIntVar(1,3);
   CtVar y = newIntVar(1,3);
   distinct(*this,{x,y});
-  rel(*this,x,IRT_NQ,1);
-  rel(*this,y,IRT_NQ,1);
+  rel(*this,x,IRT_NQ,2);
+  rel(*this,y,IRT_NQ,2);
   branch(*this,{x,y});
   cout << "In Test constructor" << endl;
 }
