@@ -1,5 +1,7 @@
 #include <gecodert/gecodert.hh>
+#include <gecodert/int/distinct.hh>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 using namespace GecodeRT;
@@ -11,9 +13,11 @@ public:
 };
 
 Test::Test(void) {
-  CtVar x = newIntVar(4,12);
+  CtVar x = newIntVar(1,3);
+  CtVar y = newIntVar(1,3);
+  distinct(*this,{x,y});
   //cout << "Pass1" << x << endl;
-  branch(*this,{x});
+  branch(*this,{x,y});
   //cout << "Pass2" << x << endl;
   cout << "In Test constructor" << endl;
 }
