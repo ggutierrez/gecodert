@@ -14,13 +14,16 @@ public:
 };
 
 Test::Test(void) {
-  CtVar x = newIntVar(1,3);
-  CtVar y = newIntVar(1,3);
-  distinct(*this,{x,y});
-  rel(*this,x,IRT_NQ,2);
-  rel(*this,y,IRT_NQ,2);
-  branch(*this,{x,y});
-  cout << "In Test constructor" << endl;
+
+  CtVar x = newIntVar(0,2);
+  CtVar y = newIntVar(0,2);
+  CtVar z = newIntVar(0,2);
+  CtVar w = newIntVar(0,2);
+  
+  rel(*this, {x,y}, IRT_EQ, {z, w});
+
+  branch(*this, {x,y,z,w});
+
 }
 
 int main(void) {
