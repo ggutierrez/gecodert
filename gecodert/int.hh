@@ -13,6 +13,7 @@ namespace GecodeRT {
     IRT_GQ = Gecode::IRT_GQ, ///< Greater or equal (\f$\geq\f$)
     IRT_GR = Gecode::IRT_GR  ///< Greater (\f$>\f$)    
   };
+
 }
 
 #endif
