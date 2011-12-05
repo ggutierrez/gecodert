@@ -126,6 +126,8 @@ namespace GecodeRT {
     const Gecode::BoolVar& boolVar(const CtVar& var) const;
     /// Returns the constraint variable represented by \a var
     const Gecode::SetVar& setVar(const CtVar& var) const;
+    /// Returns IntVarArgs for a vector of CtVar
+    Gecode::IntVarArgs toIntVarArgs(GecodeSpace& home,std::vector<CtVar> v);
     /// Copy function
     virtual Gecode::Space* copy(bool share);
     /// Dump space variables to \a os

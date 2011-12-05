@@ -4,10 +4,7 @@ namespace GecodeRT {
   void distinct(GecodeSpace& home, const std::vector<CtVar>& list){
     
     Gecode::IntVarArgs v;
-    for(const CtVar& cv : list){
-      v << home.intVar(cv);
-    }
-    
+    v=home.toIntVarArgs(home,list);
     Gecode::distinct(home,v);
     
   }
