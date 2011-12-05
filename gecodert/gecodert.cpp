@@ -56,6 +56,14 @@ namespace GecodeRT {
     sv.push_back(v);
     return CtVar('s', index);
   }
+  
+  Gecode::IntVarArgs GecodeSpace::toIntVarArgs(std::vector<CtVar> v){
+    IntVarArgs x;
+    for (const CtVar& cv : v) {
+      x << intVar(cv);
+    }
+    return x;
+  }
 
   std::ostream& GecodeSpace::dump(std::ostream& os) const {
     os << "Variables: " << std::endl;
