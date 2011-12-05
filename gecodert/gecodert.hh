@@ -2,7 +2,6 @@
 #define __GECODERT_GECODERT_HH__
 
 #include <iostream>
-#include <tuple>
 #include <vector>
 #include <gecode/kernel.hh>
 #include <gecode/int.hh>
