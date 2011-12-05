@@ -1,4 +1,5 @@
 #include <gecodert/gecodert.hh>
+#include <gecodert/int/rel.hh>
 #include <iostream>
 
 using namespace std;
@@ -11,7 +12,8 @@ public:
 };
 
 Money::Money(void) {
-  CtVar x = newIntVar(0,10);
+  CtVar x = newIntVar(0,3);
+  rel(*this, x, IRT_NQ, 0);
   branch(*this,{x});
   cout << "In Money constructor" << endl;
 }

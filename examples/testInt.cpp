@@ -1,5 +1,6 @@
 #include <gecodert/gecodert.hh>
 #include <gecodert/int/distinct.hh>
+#include <gecodert/int/rel.hh>
 #include <iostream>
 #include <vector>
 
@@ -16,6 +17,8 @@ Test::Test(void) {
   CtVar x = newIntVar(1,3);
   CtVar y = newIntVar(1,3);
   distinct(*this,{x,y});
+  rel(*this,x,IRT_NQ,1);
+  rel(*this,y,IRT_NQ,1);
   branch(*this,{x,y});
   cout << "In Test constructor" << endl;
 }
