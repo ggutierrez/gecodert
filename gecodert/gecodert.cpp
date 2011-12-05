@@ -56,11 +56,11 @@ namespace GecodeRT {
     sv.push_back(v);
     return CtVar('s', index);
   }
-
-  Gecode::IntVarArgs toIntVarArgs(GecodeSpace& home,std::vector<CtVar> v){
+  
+  Gecode::IntVarArgs GecodeSpace::toIntVarArgs(std::vector<CtVar> v){
     IntVarArgs x;
     for (const CtVar& cv : v) {
-      x << home.intVar(cv);
+      x << intVar(cv);
     }
     return x;
   }

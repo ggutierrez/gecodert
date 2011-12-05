@@ -22,9 +22,10 @@ Money::Money(void) {
   // CtVar o = newIntVar(0,9);
   // CtVar r = newIntVar(0,9);
   // CtVar y = newIntVar(0,9);
-  rel(*this, s, IRT_EQ, 0);
+ distinct(*this,{s,e}); 
+ rel(*this, s, IRT_EQ, 0);
   rel(*this, e, IRT_LQ, 5);
-  distinct(*this,{s,e})
+ 
   branch(*this,{s,e});
   cout << "In Money constructor" << endl;
 }
