@@ -16,9 +16,7 @@ Test::Test(void) {
   CtVar x = newIntVar(1,3);
   CtVar y = newIntVar(1,3);
   distinct(*this,{x,y});
-  //cout << "Pass1" << x << endl;
   branch(*this,{x,y});
-  //cout << "Pass2" << x << endl;
   cout << "In Test constructor" << endl;
 }
 

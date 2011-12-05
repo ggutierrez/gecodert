@@ -6,10 +6,8 @@
 #include <gecode/int.hh>
 #include <gecodert/gecodert.hh>
 
-using namespace std;
-using namespace GecodeRT;
-
-void distinct(GecodeSpace& home, const vector<CtVar>& list);
-
+namespace GecodeRT {
+  void distinct(GecodeSpace& home, const std::vector<CtVar>& list);
+}
 #endif
 
