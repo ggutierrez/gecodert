@@ -1,6 +1,4 @@
-#include <iostream>
 #include <gecodert/int/rel.hh>
-#include <gecodert/int.hh>
 
 using namespace std;
 

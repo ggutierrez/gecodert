@@ -47,6 +47,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 set(SOURCES
   gecodert/gecodert.cpp
   gecodert/int/distinct.cpp
+  gecodert/int/linear.cpp
   gecodert/int/rel.cpp
   )
 

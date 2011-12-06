@@ -1,5 +1,6 @@
 #include <gecodert/gecodert.hh>
 #include <gecodert/int/distinct.hh>
+#include <gecodert/int/linear.hh>
 #include <gecodert/int/rel.hh>
 #include <iostream>
 #include <vector>
@@ -14,15 +15,15 @@ public:
 };
 
 Test::Test(void) {
-
   CtVar x = newIntVar(0,2);
-  CtVar y = newIntVar(0,2);
-  CtVar z = newIntVar(0,2);
-  CtVar w = newIntVar(0,2);
+  // CtVar y = newIntVar(0,2);
+  // CtVar z = newIntVar(0,2);
+  // CtVar w = newIntVar(0,2);
   
-  rel(*this, {x,y}, IRT_EQ, {z, w});
+  //  rel(*this, {x,y}, IRT_EQ, {z, w});
 
-  branch(*this, {x,y,z,w});
+  linear(*this, {5}, {x}, IRT_EQ, 10);
+  branch(*this, {x});
 
 }
 
