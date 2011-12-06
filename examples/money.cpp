@@ -27,9 +27,10 @@ Money::Money(void) {
   std::vector<CtVar> l {s, e, n, d, m, r, y};
 
   rel(*this, s, IRT_NQ, 0);
-  rel(*this, m, IRT_NQ, 0);
-  distinct(*this, l); 
- 
+  rel(*this, m, IRT_NQ, 0);  
+
+  distinct(*this, l);
+
   std::vector<int> c(4+4+5);
   std::vector<CtVar> x {s, e, n, d, m, o, r, e, m, o, n, e, y};
   
@@ -41,8 +42,8 @@ Money::Money(void) {
   //  x[8] = m;      x[9] = o;     x[10] = n;    x[11] = e;   x[12] = y;
 
   linear(*this, c, x, IRT_EQ, 0);
- 
   branch(*this, l);
+   
 }
 
 int main(void) {

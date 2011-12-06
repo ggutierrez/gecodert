@@ -2,6 +2,8 @@
 
 namespace GecodeRT {
   void distinct(GecodeSpace& home, const std::vector<CtVar>& x) {
-    home.toIntVarArgs(x);
+    Gecode::IntVarArgs l;
+    l=home.toIntVarArgs(x);
+    Gecode::distinct(home,l);
   }
 }

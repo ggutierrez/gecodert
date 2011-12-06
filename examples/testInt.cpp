@@ -16,14 +16,15 @@ public:
 
 Test::Test(void) {
   CtVar x = newIntVar(0,2);
-  // CtVar y = newIntVar(0,2);
+  CtVar y = newIntVar(0,2);
   // CtVar z = newIntVar(0,2);
   // CtVar w = newIntVar(0,2);
   
+  distinct(*this,{x,y});
   //  rel(*this, {x,y}, IRT_EQ, {z, w});
 
-  linear(*this, {5}, {x}, IRT_EQ, 10);
-  branch(*this, {x});
+  //linear(*this, {5}, {x}, IRT_EQ, 10);
+  branch(*this, {x,y});
 
 }
 
