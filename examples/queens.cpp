@@ -1,5 +1,4 @@
 #include <gecodert/gecodert.hh>
-#include <gecodert/int.hh>
 #include <gecodert/int/distinct.hh>
 #include <iostream>
 
