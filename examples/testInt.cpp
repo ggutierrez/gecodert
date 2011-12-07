@@ -15,12 +15,13 @@ public:
 };
 
 Test::Test(void) {
-  CtVar x = newIntVar(0,2);
-  CtVar y = newIntVar(0,2);
-  // CtVar z = newIntVar(0,2);
-  // CtVar w = newIntVar(0,2);
   
-  distinct(*this,{x,y});
+  CtVar x = newIntVar(0,1);
+  CtVar y = newIntVar(0,1);
+  CtVar z = newIntVar(0,1);
+  CtVar w = newIntVar(0,1);
+  
+  distinct(*this,{1,2,3,4}, {x,y,z,w});
   //  rel(*this, {x,y}, IRT_EQ, {z, w});
 
   //linear(*this, {5}, {x}, IRT_EQ, 10);
