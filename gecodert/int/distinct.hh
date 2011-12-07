@@ -1,8 +1,12 @@
 #ifndef __GECODERT_INT_DISTINCT_HH__
 #define __GECODERT_INT_DISTINCT_HH__
 
+#include <iostream>
 #include <vector>
 #include <gecodert/gecodert.hh>
+#include <gecodert/exceptions/exceptions.hh>
+
+using namespace std;
 
 namespace GecodeRT {
   
@@ -10,5 +14,7 @@ namespace GecodeRT {
   void distinct(GecodeSpace& home, const std::vector<CtVar>& x);
   
 }
+
+
 
 #endif

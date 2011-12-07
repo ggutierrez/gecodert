@@ -64,7 +64,7 @@ namespace GecodeRT {
     }
     return x;
   }
-
+  
   std::ostream& GecodeSpace::dump(std::ostream& os) const {
     os << "Variables: " << std::endl;
     int i = 0;
