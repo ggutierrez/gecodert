@@ -24,7 +24,7 @@ Money::Money(void) {
   CtVar r = newIntVar(0,9);
   CtVar y = newIntVar(0,9);
 
-  std::vector<CtVar> l {s, e, n, d, m, r, y};
+  std::vector<CtVar> l {s, e, n, d, m, o, r, y};
 
   rel(*this, s, IRT_NQ, 0);
   rel(*this, m, IRT_NQ, 0);
