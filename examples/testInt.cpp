@@ -19,10 +19,8 @@ Test::Test(void) {
   CtVar y = newBoolVar();
   // CtVar z = newIntVar(0,2);
   // CtVar w = newIntVar(0,2);
-  cout << "Pass1" << endl;
   distinct(*this,{x,y});
   //  rel(*this, {x,y}, IRT_EQ, {z, w});
-  cout << "Pass2" << endl;
   //linear(*this, {5}, {x}, IRT_EQ, 10);
   branch(*this, {x,y});
 
