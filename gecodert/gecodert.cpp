@@ -1,5 +1,6 @@
 #include <gecodert/gecodert.hh>
 #include <gecode/search.hh>
+#include <stdexcept>
 
 using namespace Gecode;
 
@@ -25,15 +26,36 @@ namespace GecodeRT {
   }
   
   const IntVar& GecodeSpace::intVar(const CtVar& v) const {
-    return iv.at(v.index_);
+    IntVar x;
+    try{
+      x=iv.at(v.index_);
+    }catch(std::out_of_range& e){
+      cout << "Error" << endl;
+      cout << e.what() << endl;
+    }
+    return x;
   }
 
   const BoolVar& GecodeSpace::boolVar(const CtVar& v) const {
-    return bv.at(v.index_); 
+    BoolVar x;
+    try{
+      x=bv.at(v.index_);
+    }catch(std::out_of_range& e){
+      cout << "Error" << endl;
+      cout << e.what() << endl;
+    }
+    return x;
   }
 
   const SetVar& GecodeSpace::setVar(const CtVar& v) const {
-    return sv.at(v.index_); 
+    SetVar x;
+    try{
+      x=sv.at(v.index_);
+    }catch(std::out_of_range& e){
+      cout << "Error" << endl;
+      cout << e.what() << endl;
+    }
+    return x; 
   }
   
   CtVar GecodeSpace::newIntVar(int min, int max) {
