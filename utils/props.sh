@@ -16,7 +16,8 @@ sed -e 's/, IntConLevel icl=ICL_DEF//g' -e 's/, IntConLevel=ICL_DEF//g' \
     -e 's/Home home/GecodeSpace\& home/g' \
     -e 's/\<IntVar\>/CtVar/g' -e 's/\<BoolVar\>/CtVar/g' -e 's/\<SetVar\>/CtVar/g' \
     -e 's/\<IntVarArgs\>/std::vector<CtVar>\&/g' -e 's/\<BoolVarArgs\>/std::vector<CtVar>\&/g' \
-    -e 's/\<SetVarArgs\>/std::vector<CtVar>\&/g' -e 's/\<IntSet\>/std::vector<int>\&/g' -e 's/\&\&/\&/g' \
+    -e 's/\<SetVarArgs\>/std::vector<CtVar>\&/g' -e 's/\<IntSet\>/std::vector<int>\&/g' \
+    -e 's/\<IntArgs\>/std::vector<int>\&/g' -e 's/\&\&/\&/g' \
     -e 's/^[ \t]*//;s/[ \t]*$//' # Removes all leading and trailing whitespace from end of each line
 
 # -e 's/,F/);\n/g'

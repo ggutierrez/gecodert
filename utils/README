@@ -1,0 +1,4 @@
+Example:
+
+$ ./props_hh.sh int dom <- generates dom.hh
+$ ./props_cpp.sh int dom <- generates dom.cpp

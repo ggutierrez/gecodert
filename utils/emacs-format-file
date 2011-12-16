@@ -1,0 +1,15 @@
+;;; -*- emacs-lisp -*-
+;;; File: emacs-format-file
+
+;;; Adapted, originally by:
+;;; Stan Warford
+;;; 17 May 2006
+
+(defun emacs-format-function ()
+  "Format the whole buffer."
+  (c-set-style "stroustrup")
+  (setq tab-width 2 c-basic-offset 2 indent-tabs-mode t)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max))
+  (save-buffer)
+  )
