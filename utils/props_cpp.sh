@@ -29,11 +29,13 @@ ${PROTOTYPES}
 }
 EOF
 
-cat ${OUTPUTDIR}'/'${PROPAGATOR}.cpp | sed -e 's/);Gecode/) { \nGecode/g' -e 's/);/);\n}\n/g' |
-awk '/GecodeSpace& /{c++;if(c==2){sub("GecodeSpace& ","");c=0}}1' |
-awk '/const std::vector<CtVar>& /{c++;if(c==2){sub("const std::vector<CtVar>& ","");c=0}}1' |
-awk '/const std::vector<int>& /{c++;if(c==2){sub("const std::vector<int>& ","");c=0}}1' |
-awk '/int /{c++;if(c==2){sub("int ","");c=0}}1' |
-awk '/CtVar /{c++;if(c==2){sub("CtVar ","");c=0}}1'
+cat ${OUTPUTDIR}'/'${PROPAGATOR}.cpp | sed -e 's/);Gecode/) { \nGecode/g' -e 's/);/);\n}\n/g'
+#  |
+# grep Gecode::
+# awk '/GecodeSpace& /{c++;if(c==2){sub("GecodeSpace& ","");c=0}}1' |
+# awk '/const std::vector<CtVar>& /{c++;if(c==2){sub("const std::vector<CtVar>& ","");c=0}}1' |
+# awk '/const std::vector<int>& /{c++;if(c==2){sub("const std::vector<int>& ","");c=0}}1' |
+# awk '/int /{c++;if(c==2){sub("int ","");c=0}}1' |
+# awk '/CtVar /{c++;if(c==2){sub("CtVar ","");c=0}}1'
 
 emacs -batch ${OUTPUTDIR}'/'${PROPAGATOR}.cpp -l ${HERE}/emacs-format-file -f emacs-format-function
