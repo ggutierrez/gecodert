@@ -128,6 +128,8 @@ namespace GecodeRT {
     const Gecode::SetVar& setVar(const CtVar& var) const;
     /// Returns IntVarArgs for a vector of CtVar
     Gecode::IntVarArgs toIntVarArgs(std::vector<CtVar> v);
+    /// Returns IntArgs for a vector of int
+    Gecode::IntArgs toIntArgs(std::vector<int>& x);
     /// Copy function
     virtual Gecode::Space* copy(bool share);
     /// Dump space variables to \a os

@@ -65,6 +65,11 @@ namespace GecodeRT {
     return x;
   }
 
+  Gecode::IntArgs GecodeSpace::toIntArgs(std::vector<int>& x){
+    IntArgs y=x;
+    return y;
+  }
+
   std::ostream& GecodeSpace::dump(std::ostream& os) const {
     os << "Variables: " << std::endl;
     int i = 0;

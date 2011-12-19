@@ -22,6 +22,6 @@ for line in lines:
         #line=line.replace("const std::vector<int>& ", "Gecode::IntArgs(a)")
         line=line.replace("IntRelType ", "static_cast<Gecode::IntRelType>(r)")
 
-#        print(line)
+        print(line)
 
 sys.stdout.writelines(lines)
