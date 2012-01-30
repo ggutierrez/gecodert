@@ -14,7 +14,7 @@ MODULE=$1
 PROPAGATOR=$2
 MODULEGUARD=`echo ${MODULE} | tr '[:lower:]' '[:upper:]'`
 PROPAGATORGUARD=`echo ${PROPAGATOR} | tr '[:lower:]' '[:upper:]'`
-PROTOTYPES=`./props.sh | grep ${PROPAGATOR} | sed -e 's \(.*\) \1\1 ' -e 's/;void /;Gecode::/'`
+PROTOTYPES=`./props_functions_cpp.sh | grep ${PROPAGATOR}` #| sed -e 's \(.*\) \1\1 ' -e 's/;void /Gecode::/' -e 's/; void /Gecode::/'`
 
 cat > ${OUTPUTDIR}'/'${PROPAGATOR}.cpp <<EOF
 
