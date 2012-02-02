@@ -24,24 +24,25 @@ sed -i -e '/XXX/s/void /Gecode::/g' \
     -e '/XXX/s/XXX//g' \
     -e '/Gecode::/s/, IntConLevel icl=ICL_DEF);/);\n};/g' \
     -e '/Gecode::/s/Home //g' \
-    -e '/Gecode::/s/\<IntVar\>/home.intVar/g' \
-    -e '/Gecode::/s/\<IntVarArgs\>/home.toIntVarArgs/g' \
-    -e '/Gecode::/s/\<IntSet\>/IntSet(home.toIntArgs)\&/g' \
-    -e '/Gecode::/s/\<IntArgs\>/home.toIntArgs/g' \
+    -e '/Gecode::/s/\<IntVar \([^ ]*\)\>/home.intVar(\1)/g' \
+    -e '/Gecode::/s/\<IntVarArgs\& \([^ ]*\)\>/home.toIntVarArgs(\1)/g' \
+    -e '/Gecode::/s/\<IntSet\& \([^ ]*\)\>/IntSet(home.toIntArgs(\1))/g' \
+    -e '/Gecode::/s/\<IntArgs\& \([^ ]*\)\>/Gecode::IntArgs(\1)/g' \
+    -e '/Gecode::/s/\<int\>//g' \
     -e '/Gecode::/s/\&//g' \
     -e '/Gecode::/s/const//g' /tmp/prot.cpp 
 
 #Headers
-sed -i -e 's/, IntConLevel icl=ICL_DEF);/){/g' \
-    -e 's/, IntConLevel=ICL_DEF//g' \
-    -e 's/Home home/GecodeSpace\& home/g' \
-    -e 's/\<IntVar\>/CtVar/g' \
-    -e 's/\<BoolVar\>/CtVar/g' \
-    -e 's/\<SetVar\>/CtVar/g' \
-    -e 's/\<IntVarArgs\>/std::vector<CtVar>\&/g' \
-    -e 's/\<BoolVarArgs\>/std::vector<CtVar>\&/g' \
-    -e 's/\<SetVarArgs\>/std::vector<CtVar>\&/g' \
-    -e 's/\<IntSet\>/std::vector<int>\&/g' \
-    -e 's/\<IntArgs\>/std::vector<int>\&/g' \
-    -e 's/\&\&/\&/g' /tmp/prot.cpp
+sed -i -e '/void /s/, IntConLevel icl=ICL_DEF);/){/g' \
+    -e '/void /s/, IntConLevel=ICL_DEF//g' \
+    -e '/void /s/Home home/GecodeSpace\& home/g' \
+    -e '/void /s/\<IntVar\>/CtVar/g' \
+    -e '/void /s/\<BoolVar\>/CtVar/g' \
+    -e '/void /s/\<SetVar\>/CtVar/g' \
+    -e '/void /s/\<IntVarArgs\>/std::vector<CtVar>\&/g' \
+    -e '/void /s/\<BoolVarArgs\>/std::vector<CtVar>\&/g' \
+    -e '/void /s/\<SetVarArgs\>/std::vector<CtVar>\&/g' \
+    -e '/void /s/\<IntSet\>/std::vector<int>\&/g' \
+    -e '/void /s/\<IntArgs\>/std::vector<int>\&/g' \
+    -e '/void /s/\&\&/\&/g' /tmp/prot.cpp
 
