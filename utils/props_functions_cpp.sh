@@ -12,7 +12,7 @@ grep -A 4 -B 1 '(Home home,' | sed -e 's/GECODE_INT_EXPORT //g' \
 ./parser.py /tmp/prototypes2 | 
 
 # Generates body for cpp
-sed -e 's \(.*\) \1\1 ' > /tmp/prot.cpp  
+sed -e 's \(.*\) \1\1 ' > /tmp/prot.cpp
 sed -i -e 's/; /;\nXXX/g' -e 's/;v/;\nXXXv/g' /tmp/prot.cpp
 
 # Indents file
@@ -22,7 +22,7 @@ emacs -batch /tmp/prot.cpp -l ${PWD}/emacs-format-file -f emacs-format-function
 # Body
 sed -i -e '/XXX/s/void /Gecode::/g' \
     -e '/XXX/s/XXX//g' \
-    -e '/Gecode::/s/, IntConLevel icl=ICL_DEF);/);\n};/g' \
+    -e '/Gecode::/s/, IntConLevel icl=ICL_DEF);/);\n}/g' \
     -e '/Gecode::/s/Home //g' \
     -e '/Gecode::/s/\<IntVar \([^ ]*\)\>/home.intVar(\1)/g' \
     -e '/Gecode::/s/\<IntVarArgs\& \([^ ]*\)\>/home.toIntVarArgs(\1)/g' \
@@ -30,7 +30,7 @@ sed -i -e '/XXX/s/void /Gecode::/g' \
     -e '/Gecode::/s/\<IntArgs\& \([^ ]*\)\>/Gecode::IntArgs(\1)/g' \
     -e '/Gecode::/s/\<int\>//g' \
     -e '/Gecode::/s/\&//g' \
-    -e '/Gecode::/s/const//g' /tmp/prot.cpp 
+    -e '/Gecode::/s/const//g' /tmp/prot.cpp
 
 #Headers
 sed -i -e '/void /s/, IntConLevel icl=ICL_DEF);/){/g' \
@@ -46,3 +46,5 @@ sed -i -e '/void /s/, IntConLevel icl=ICL_DEF);/){/g' \
     -e '/void /s/\<IntArgs\>/std::vector<int>\&/g' \
     -e '/void /s/\&\&/\&/g' /tmp/prot.cpp
 
+#Show File
+cat /tmp/prot.cpp
