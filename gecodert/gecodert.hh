@@ -98,12 +98,12 @@ namespace GecodeRT {
     IvContainer iv;
     
     typedef std::vector<Gecode::BoolVar> BvContainer;
-    typedef IvContainer::iterator BvContainerIT;
+    typedef BvContainer::iterator BvContainerIT;
     /// Storage for the bool variables
     BvContainer bv;
 
     typedef std::vector<Gecode::SetVar> SvContainer;
-    typedef IvContainer::iterator SvContainerIT;
+    typedef SvContainer::iterator SvContainerIT;
     /// Storage for the bool variables
     SvContainer sv;
     
