@@ -1,0 +1,5 @@
+Build Requirements:
+
+* CMake
+* Gecode
+* Qt
