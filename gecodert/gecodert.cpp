@@ -66,7 +66,7 @@ namespace GecodeRT {
   }
 
   Gecode::IntArgs GecodeSpace::toIntArgs(std::vector<int>& x){
-    IntArgs y=x;
+    IntArgs y(x);
     return y;
   }
 
