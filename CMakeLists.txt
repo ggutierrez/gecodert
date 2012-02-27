@@ -58,7 +58,7 @@ target_link_libraries(gecodert ${GECODE_LIBRARIES})
 ##########################################################################
 # Examples
 ##########################################################################
-set(EXAMPLES money testInt testBool testSet queens)
+set(EXAMPLES money testInt testBool testSet queens zebra)
 foreach(example ${EXAMPLES})
   add_executable(${example} examples/${example}.cpp)
   target_link_libraries(${example} gecodert)
