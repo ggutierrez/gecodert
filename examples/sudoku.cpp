@@ -122,7 +122,8 @@ Sudoku::Sudoku(void) {
     std::cout << "" << std::endl;
   }
 
-  branch(*this, squareList);
+  branchInt(*this, squareList, INT_VAR_SIZE_MAX, INT_VAL_MAX);
+  //branch(*this, squareList);
 }
 
 int main(void) {
