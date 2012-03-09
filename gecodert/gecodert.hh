@@ -6,6 +6,8 @@
 #include <gecode/kernel.hh>
 #include <gecode/int.hh>
 #include <gecode/set.hh>
+#include <gecodert/set.hh>
+#include <gecodert/int.hh>
 
 using namespace std;
 /**
@@ -141,6 +143,12 @@ namespace GecodeRT {
    *
    */
   void branch(GecodeSpace& home, const std::vector<CtVar>& v);  
+  
+  void branchInt(GecodeSpace& home, const std::vector<CtVar>& v,  IntVarBranch IVarB, IntValBranch IValB);
+  
+  void branchBool(GecodeSpace& home, const std::vector<CtVar>& v, IntVarBranch IVarB, IntValBranch IValB);
+  
+  void branchSet(GecodeSpace& home, const std::vector<CtVar>& v, SetVarBranch SVarB, SetValBranch SValB);
  
  /**
    * \brief Search

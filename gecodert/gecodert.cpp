@@ -108,13 +108,55 @@ namespace GecodeRT {
 	x << home.boolVar(cv);
       }
       Gecode::branch(home,x,Gecode::INT_VAR_SIZE_MIN,Gecode::INT_VAL_MIN);
-    } else if(v[0].isSetVar()){	
+    } else if(v[0].isSetVar()){
       SetVarArgs x;
       for (const CtVar& cv : v) {
 	x << home.setVar(cv);
       }
       Gecode::branch(home,x,Gecode::SET_VAR_SIZE_MIN,Gecode::SET_VAL_MIN_INC);
     } 
+  }
+  
+  void branchInt(GecodeSpace& home, const std::vector<CtVar>& v,  IntVarBranch IVarB, IntValBranch IValB) {
+    std::cout << "Should post a brancher - Int" << std::endl;
+    
+    if(v[0].isIntVar()){
+      IntVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.intVar(cv);
+      }
+      Gecode::branch(home,x,static_cast<Gecode::IntVarBranch>(IVarB),static_cast<Gecode::IntValBranch>(IValB));
+    } else {
+      std::cout << "It is not an IntVar" << std::endl;
+    }
+  }
+  
+  void branchBool(GecodeSpace& home, const std::vector<CtVar>& v, IntVarBranch IVarB, IntValBranch IValB) {
+    std::cout << "Should post a brancher - Bool" << std::endl;
+    
+    if(v[0].isBoolVar()){
+      BoolVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.boolVar(cv);
+      }
+      Gecode::branch(home,x,static_cast<Gecode::IntVarBranch>(IVarB),static_cast<Gecode::IntValBranch>(IValB));
+    } else {
+      std::cout << "It is not a BoolVar" << std::endl;
+    } 
+  }
+  
+  void branchSet(GecodeSpace& home, const std::vector<CtVar>& v, SetVarBranch SVarB, SetValBranch SValB) {
+    std::cout << "Should post a brancher - Set" << std::endl;
+    
+    if(v[0].isSetVar()){	
+      SetVarArgs x;
+      for (const CtVar& cv : v) {
+	x << home.setVar(cv);
+      }
+      Gecode::branch(home,x,static_cast<Gecode::SetVarBranch>(SVarB),static_cast<Gecode::SetValBranch>(SValB));
+    } else {
+      std::cout << "It is not a SetVar" << std::endl;
+    }
   }
   
   /*
